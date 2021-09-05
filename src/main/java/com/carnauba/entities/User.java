@@ -1,10 +1,13 @@
 package com.carnauba.entities;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User implements Serializable {
@@ -18,17 +21,21 @@ public class User implements Serializable {
 	private String phone;
 	private String password;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Cart> carts = new ArrayList<>();
+	
 	public User() {
 		
 	}
 
-	public User(Long id, String name, String email, String phone, String password) {
+	public User(Long id, String name, String email, String phone, String password, List<Cart> carts) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
+		this.carts = carts;
 	}
 
 	public Long getId() {
@@ -94,6 +101,14 @@ public class User implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public List<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(List<Cart> carts) {
+		this.carts = carts;
 	}
 	
 	

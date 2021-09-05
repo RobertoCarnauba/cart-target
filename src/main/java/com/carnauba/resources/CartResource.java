@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.carnauba.entities.User;
-import com.carnauba.services.UserService;
+import com.carnauba.entities.Cart;
+import com.carnauba.services.CartService;
 
 @RestController
-@RequestMapping(value="/users")
-public class UserResource {
+@RequestMapping(value="/carts")
+public class CartResource {
 	
 	@Autowired
-	private UserService service;
+	private CartService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll(){
-		List<User> list = service.findAll();
+	public ResponseEntity<List<Cart>> findAll(){
+		List<Cart> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id){
-		User obj = service.findById(id);
+	public ResponseEntity<Cart> findById(@PathVariable Long id){
+		Cart obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
