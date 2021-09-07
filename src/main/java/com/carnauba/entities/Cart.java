@@ -2,12 +2,15 @@ package com.carnauba.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -28,16 +31,18 @@ public class Cart implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	private Double qtd;
+	private Double quantity;
 	private Double total;
 	private Double subTotal;
+	
 
-	public Cart(Long id, Instant moment, User user, Double qtd, Double total, Double subTotal) {
+
+	public Cart(Long id, Instant moment, User user, Double quantity, Double total, Double subTotal) {
 		super();
 		this.id = id;
 		this.moment = moment;
 		this.user = user;
-		this.qtd = qtd;
+		this.quantity = quantity;
 		this.total = total;
 		this.subTotal = subTotal;
 	}
@@ -72,11 +77,11 @@ public class Cart implements Serializable {
 	}
 
 	public Double getQtd() {
-		return qtd;
+		return quantity;
 	}
 
-	public void setQtd(Double qtd) {
-		this.qtd = qtd;
+	public void setQtd(Double quantity) {
+		this.quantity = quantity;
 	}
 
 	public Double getTotal() {
@@ -122,9 +127,13 @@ public class Cart implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", moment=" + moment + ", user=" + user + ", qtd=" + qtd + ", total=" + total
+		return "Cart [id=" + id + ", moment=" + moment + ", user=" + user + ", quantity=" + quantity + ", total=" + total
 				+ ", subTotal=" + subTotal + "]";
 	}
+
+	
+
+	
 
 	// Calcular desconto
 	// Valor com desconto
