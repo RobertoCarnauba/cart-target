@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +25,7 @@ public class User implements Serializable {
 	private String password;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<Cart> carts = new ArrayList<>();
 	
 	public User() {

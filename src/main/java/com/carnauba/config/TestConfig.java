@@ -9,9 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.carnauba.entities.Cart;
+import com.carnauba.entities.CartItem;
 import com.carnauba.entities.Category;
 import com.carnauba.entities.Product;
 import com.carnauba.entities.User;
+import com.carnauba.repositores.CartItemRepository;
 import com.carnauba.repositores.CartRepository;
 import com.carnauba.repositores.CategoryRepository;
 import com.carnauba.repositores.ProductRepository;
@@ -33,6 +35,8 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private ProductRepository productRepository;
 	
+	@Autowired
+	private CartItemRepository cartItemRepository;
 
 
 	@Override
@@ -76,6 +80,13 @@ public class TestConfig implements CommandLineRunner {
 		product7.getCategories().add(category3);
 		
 		productRepository.saveAll(Arrays.asList(product1,product2,product3,product4, product5, product6,product7));
+		
+		
+		CartItem cartItem1 = new CartItem(cart3, product1, 1, product1.getPrice());
+		CartItem cartItem2 = new CartItem(cart1, product2, 1, product1.getPrice());
+		CartItem cartItem3 = new CartItem(cart4, product7, 1, product1.getPrice());
+		
+		cartItemRepository.saveAll(Arrays.asList(cartItem1, cartItem2, cartItem3));
 		
 	}
 	

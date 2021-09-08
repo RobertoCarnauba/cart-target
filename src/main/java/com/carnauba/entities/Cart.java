@@ -2,6 +2,8 @@ package com.carnauba.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cart implements Serializable {
@@ -23,7 +25,7 @@ public class Cart implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant moment;
 
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -31,6 +33,9 @@ public class Cart implements Serializable {
 	private Double quantity;
 	private Double total;
 	private Double subTotal;
+	
+	@OneToMany(mappedBy = "id.cart")
+	private Set<CartItem> itens = new HashSet<>();
 	
 
 
@@ -95,6 +100,10 @@ public class Cart implements Serializable {
 
 	public void setSubTotal(Double subTotal) {
 		this.subTotal = subTotal;
+	}
+	
+	public Set<CartItem> getItems(){
+		return itens;
 	}
 
 	@Override

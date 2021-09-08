@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 
 import com.carnauba.entities.Cart;
 import com.carnauba.entities.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Embeddable
 public class CartItemPK implements Serializable {
@@ -21,7 +22,7 @@ public class CartItemPK implements Serializable {
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
-	
+	@JsonIgnore
 	public Cart getCart() {
 		return cart;
 	}

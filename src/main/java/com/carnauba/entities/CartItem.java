@@ -6,13 +6,15 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 import com.carnauba.entities.pk.CartItemPK;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class CartItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private CartItemPK id;
+	private CartItemPK id = new CartItemPK();
 	
 	private Integer quantity;
 	private Double price;
@@ -45,6 +47,7 @@ public class CartItem implements Serializable {
 		this.price = price;
 	}
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	public Cart getCart() {
 		return id.getCart();
 	}
