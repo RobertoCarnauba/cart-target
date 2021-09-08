@@ -74,6 +74,7 @@ public class Product implements Serializable {
 		return categories;
 	}
 	
+	@JsonIgnore
 	public Set<Cart> getCarts() {
 		Set<Cart> set = new HashSet<>();
 		for (CartItem x : items) {

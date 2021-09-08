@@ -46,10 +46,10 @@ public class TestConfig implements CommandLineRunner {
 		User u2 = new User(null, "Pedro Dantas da Silva", "pedro@teste.com", "15983328489", "741369", null);
 		User u3 = new User(null, "Maria de Mello Rego", "mmrego@teste.com", "13963987852", "789654", null);
 		
-		Cart cart1 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u1, (double) 12, 100.12, 326.00);
-		Cart cart2 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u1, (double) 12, 100.12, 326.00);
-		Cart cart3 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u3, (double) 12, 100.12, 326.00);
-		Cart cart4 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u2, (double) 12, 100.12, 326.00);
+		Cart cart1 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u1,  0, 0.00);
+		Cart cart2 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u1,  0, 0.00);
+		Cart cart3 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u3, 0, 0.00);
+		Cart cart4 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u2, 0, 0.00);
 		
 		Category category1 = new Category(null, "HomeAppliances");
 		Category category2 = new Category(null, "Computers");
@@ -82,11 +82,15 @@ public class TestConfig implements CommandLineRunner {
 		productRepository.saveAll(Arrays.asList(product1,product2,product3,product4, product5, product6,product7));
 		
 		
-		CartItem cartItem1 = new CartItem(cart3, product1, 1, product1.getPrice());
-		CartItem cartItem2 = new CartItem(cart1, product2, 1, product1.getPrice());
-		CartItem cartItem3 = new CartItem(cart4, product7, 1, product1.getPrice());
+		CartItem cartItem1 = new CartItem(cart3, product5, 6, product5.getPrice());
+		CartItem cartItem2 = new CartItem(cart1, product4, 1, product4.getPrice());
+		CartItem cartItem3 = new CartItem(cart4, product3, 1, product3.getPrice());
+		CartItem cartItem4 = new CartItem(cart3, product6, 4, product6.getPrice());
+		CartItem cartItem5 = new CartItem(cart1, product5, 2, product5.getPrice());
 		
-		cartItemRepository.saveAll(Arrays.asList(cartItem1, cartItem2, cartItem3));
+		cartItemRepository.saveAll(Arrays.asList(cartItem1, cartItem2, cartItem3, cartItem4,cartItem5));
+		
+
 		
 	}
 	

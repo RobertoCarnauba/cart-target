@@ -56,13 +56,17 @@ public class CartItem implements Serializable {
 		id.setCart(cart);
 	}
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
 	public Product getProduct() {
 		return id.getProduct();
 	}
 	
 	public void setProduct(Product product) {
 		id.setProduct(product);
+	}
+	
+	// retorna o subtotal dos itens do carrinho
+	public Double getSubTotal() {
+		return price * quantity;
 	}
 
 	@Override

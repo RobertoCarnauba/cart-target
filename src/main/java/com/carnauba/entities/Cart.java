@@ -30,23 +30,20 @@ public class Cart implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	private Double quantity;
-	private Double total;
-	private Double subTotal;
+	private Integer quantity;
 	
 	@OneToMany(mappedBy = "id.cart")
 	private Set<CartItem> itens = new HashSet<>();
 	
+	private Double total;
 
-
-	public Cart(Long id, Instant moment, User user, Double quantity, Double total, Double subTotal) {
+	public Cart(Long id, Instant moment, User user, Integer quantity, Double total) {
 		super();
 		this.id = id;
 		this.moment = moment;
 		this.user = user;
 		this.quantity = quantity;
 		this.total = total;
-		this.subTotal = subTotal;
 	}
 
 	public Cart() {
@@ -78,32 +75,36 @@ public class Cart implements Serializable {
 		this.user = user;
 	}
 
-	public Double getQtd() {
-		return quantity;
+	public Integer getQtd() {
+		Integer qtds = 0;
+		for(CartItem x : itens) {
+			qtds += x.getQuantity();
+		}
+		
+		return qtds;
 	}
 
-	public void setQtd(Double quantity) {
+	public void setQtd(Integer quantity) {
 		this.quantity = quantity;
 	}
 
-	public Double getTotal() {
-		return total;
-	}
 
 	public void setTotal(Double total) {
 		this.total = total;
 	}
 
-	public Double getSubTotal() {
-		return subTotal;
-	}
-
-	public void setSubTotal(Double subTotal) {
-		this.subTotal = subTotal;
-	}
 	
 	public Set<CartItem> getItems(){
 		return itens;
+	}
+	
+	public Double getTotal() {
+		double sum = 0.0;
+		for(CartItem x : itens) {
+			sum += x.getSubTotal();
+		}
+		
+		return sum;
 	}
 
 	@Override
@@ -134,7 +135,7 @@ public class Cart implements Serializable {
 	@Override
 	public String toString() {
 		return "Cart [id=" + id + ", moment=" + moment + ", user=" + user + ", quantity=" + quantity + ", total=" + total
-				+ ", subTotal=" + subTotal + "]";
+				+  "]";
 	}
 
 	
