@@ -13,7 +13,7 @@ import com.carnauba.entities.Product;
 import com.carnauba.services.ProductService;
 
 @RestController
-@RequestMapping(value="/productes")
+@RequestMapping(value="/products")
 public class ProductResource {
 	
 	@Autowired

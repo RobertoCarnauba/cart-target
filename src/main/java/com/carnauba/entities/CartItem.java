@@ -56,6 +56,7 @@ public class CartItem implements Serializable {
 		id.setCart(cart);
 	}
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	public Product getProduct() {
 		return id.getProduct();
 	}
