@@ -21,7 +21,11 @@ public class Category implements Serializable {
 	private Long id;
 	private String name;
 	
+<<<<<<< HEAD
 	@JsonIgnore
+=======
+
+>>>>>>> d53bde62de9e60ecc1cec38b9d3a7869362fe00f
 	@ManyToMany(mappedBy = "categories")
 	private Set<Product> products = new HashSet<>();
 	
@@ -51,6 +55,10 @@ public class Category implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> d53bde62de9e60ecc1cec38b9d3a7869362fe00f
 	@JsonIgnore
 	public Set<Product> getCategories() {
 		return products;
