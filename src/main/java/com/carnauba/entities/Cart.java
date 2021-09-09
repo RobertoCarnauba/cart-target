@@ -25,10 +25,7 @@ public class Cart implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant moment;
 
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+
 
 	private Integer quantity;
 	
@@ -37,11 +34,10 @@ public class Cart implements Serializable {
 	
 	private Double total;
 
-	public Cart(Long id, Instant moment, User user, Integer quantity, Double total) {
+	public Cart(Long id, Instant moment,Integer quantity, Double total) {
 		super();
 		this.id = id;
 		this.moment = moment;
-		this.user = user;
 		this.quantity = quantity;
 		this.total = total;
 	}
@@ -67,13 +63,6 @@ public class Cart implements Serializable {
 		this.moment = moment;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public Integer getQtd() {
 		Integer qtds = 0;
@@ -134,7 +123,7 @@ public class Cart implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", moment=" + moment + ", user=" + user + ", quantity=" + quantity + ", total=" + total
+		return "Cart [id=" + id + ", moment=" + moment  + ", quantity=" + quantity + ", total=" + total
 				+  "]";
 	}
 

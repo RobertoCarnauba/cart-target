@@ -1,6 +1,5 @@
 package com.carnauba.config;
 
-import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +11,15 @@ import com.carnauba.entities.Cart;
 import com.carnauba.entities.CartItem;
 import com.carnauba.entities.Category;
 import com.carnauba.entities.Product;
-import com.carnauba.entities.User;
 import com.carnauba.repositores.CartItemRepository;
 import com.carnauba.repositores.CartRepository;
 import com.carnauba.repositores.CategoryRepository;
 import com.carnauba.repositores.ProductRepository;
-import com.carnauba.repositores.UserRepository;
 
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
-	
-	@Autowired
-	private UserRepository userRepository;
+
 	
 	@Autowired
 	private CartRepository cartRepository;
@@ -42,14 +37,7 @@ public class TestConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		User u1 = new User(null, "Roberto Carnaúba Dias", "beto@teste.com", "11963328498", "123654", null);
-		User u2 = new User(null, "Pedro Dantas da Silva", "pedro@teste.com", "15983328489", "741369", null);
-		User u3 = new User(null, "Maria de Mello Rego", "mmrego@teste.com", "13963987852", "789654", null);
 		
-		Cart cart1 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u1,  0, 0.00);
-		Cart cart2 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u1,  0, 0.00);
-		Cart cart3 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u3, 0, 0.00);
-		Cart cart4 =  new Cart(null, Instant.parse("2021-09-01T03:20:23Z"), u2, 0, 0.00);
 		
 		Category category1 = new Category(null, "HomeAppliances");
 		Category category2 = new Category(null, "Computers");
@@ -64,8 +52,6 @@ public class TestConfig implements CommandLineRunner {
 		Product product6 =  new Product(null, "LA TRAPPE BLOND - GARRAFA 750ML", 150.30);
 		Product product7 =  new Product(null, "FULLER'S LONDON PRIDE LATA 500ML", 45.40);
 		
-		userRepository.saveAll(Arrays.asList(u1,u2,u3));
-		cartRepository.saveAll(Arrays.asList(cart1, cart2, cart3, cart4));
 		categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
 		productRepository.saveAll(Arrays.asList(product1,product2,product3,product4, product5, product6,product7));
 		
@@ -81,6 +67,10 @@ public class TestConfig implements CommandLineRunner {
 		
 		productRepository.saveAll(Arrays.asList(product1,product2,product3,product4, product5, product6,product7));
 		
+		Cart cart1 = new Cart(null, null, 1 , 0.00);
+		Cart cart3 = new Cart(null, null, 1 , 0.00);
+		Cart cart4 = new Cart(null, null, 1 , 0.00);
+		cartRepository.saveAll(Arrays.asList(cart1, cart3, cart4));
 		
 		CartItem cartItem1 = new CartItem(cart3, product5, 6, product5.getPrice());
 		CartItem cartItem2 = new CartItem(cart1, product4, 1, product4.getPrice());

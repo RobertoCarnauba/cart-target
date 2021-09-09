@@ -25,7 +25,7 @@ public class Product implements Serializable {
 	private String name;
 	private Double price;
 	
-	@JsonIgnore
+	
 	@ManyToMany
 	@JoinTable(name = "product_category", 
 	           joinColumns = @JoinColumn(name = "product_id"),
@@ -69,7 +69,7 @@ public class Product implements Serializable {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-
+    
 	public Set<Category> getCategories() {
 		return categories;
 	}
