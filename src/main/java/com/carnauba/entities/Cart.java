@@ -25,21 +25,15 @@ public class Cart implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
 	private Instant moment;
 
-
-
-	private Integer quantity;
-	
 	@OneToMany(mappedBy = "id.cart")
 	private Set<CartItem> itens = new HashSet<>();
 	
 	private Double total;
 
-	public Cart(Long id, Instant moment,Integer quantity, Double total) {
+	public Cart(Long id, Instant moment) {
 		super();
 		this.id = id;
 		this.moment = moment;
-		this.quantity = quantity;
-		this.total = total;
 	}
 
 	public Cart() {
@@ -71,10 +65,6 @@ public class Cart implements Serializable {
 		}
 		
 		return qtds;
-	}
-
-	public void setQtd(Integer quantity) {
-		this.quantity = quantity;
 	}
 
 
@@ -123,7 +113,7 @@ public class Cart implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", moment=" + moment  + ", quantity=" + quantity + ", total=" + total
+		return "Cart [id=" + id + ", moment=" + moment  +  ", total=" + total
 				+  "]";
 	}
 

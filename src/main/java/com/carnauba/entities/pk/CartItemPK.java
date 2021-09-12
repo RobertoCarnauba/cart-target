@@ -15,11 +15,12 @@ public class CartItemPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
-	@JoinColumn(name = "cart_id")
+	@JoinColumn(name = "cart")
 	private Cart cart;
 	
+	
 	@ManyToOne
-	@JoinColumn(name = "product_id")
+	@JoinColumn(name = "product")
 	private Product product;
 	
 	@JsonIgnore
@@ -29,6 +30,7 @@ public class CartItemPK implements Serializable {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+
 	public Product getProduct() {
 		return product;
 	}

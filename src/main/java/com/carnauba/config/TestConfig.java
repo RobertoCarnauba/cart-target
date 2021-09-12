@@ -67,9 +67,9 @@ public class TestConfig implements CommandLineRunner {
 		
 		productRepository.saveAll(Arrays.asList(product1,product2,product3,product4, product5, product6,product7));
 		
-		Cart cart1 = new Cart(null, null, 1 , 0.00);
-		Cart cart3 = new Cart(null, null, 1 , 0.00);
-		Cart cart4 = new Cart(null, null, 1 , 0.00);
+		Cart cart1 = new Cart(null, null);
+		Cart cart3 = new Cart(null, null);
+		Cart cart4 = new Cart(null, null);
 		cartRepository.saveAll(Arrays.asList(cart1, cart3, cart4));
 		
 		CartItem cartItem1 = new CartItem(cart3, product5, 6, product5.getPrice());
@@ -77,8 +77,9 @@ public class TestConfig implements CommandLineRunner {
 		CartItem cartItem3 = new CartItem(cart4, product3, 1, product3.getPrice());
 		CartItem cartItem4 = new CartItem(cart3, product6, 4, product6.getPrice());
 		CartItem cartItem5 = new CartItem(cart1, product5, 2, product5.getPrice());
+		CartItem cartItem6 = new CartItem(cart1, product7, 10,product7.getPrice());
 		
-		cartItemRepository.saveAll(Arrays.asList(cartItem1, cartItem2, cartItem3, cartItem4,cartItem5));
+		cartItemRepository.saveAll(Arrays.asList(cartItem1, cartItem2, cartItem3, cartItem4,cartItem5, cartItem6));
 		
 
 		

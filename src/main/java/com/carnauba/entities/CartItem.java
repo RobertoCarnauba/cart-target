@@ -15,22 +15,23 @@ public class CartItem implements Serializable {
 
 	@EmbeddedId
 	private CartItemPK id = new CartItemPK();
-	
+
 	private Integer quantity;
 	private Double price;
-	
+
 	public CartItem() {
-		
+
 	}
 
+	
 	public CartItem(Cart cart, Product product, Integer quantity, Double price) {
 		super();
 		id.setCart(cart);
 		id.setProduct(product);
 		this.quantity = quantity;
-		this.price = price;
+		this.price = product.getPrice();
 	}
-
+	
 	public Integer getQuantity() {
 		return quantity;
 	}
@@ -46,24 +47,24 @@ public class CartItem implements Serializable {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	public Cart getCart() {
 		return id.getCart();
 	}
-	
+
 	public void setCart(Cart cart) {
 		id.setCart(cart);
 	}
-	
+
 	public Product getProduct() {
 		return id.getProduct();
 	}
-	
+
 	public void setProduct(Product product) {
 		id.setProduct(product);
 	}
-	
+
 	// retorna o subtotal dos itens do carrinho
 	public Double getSubTotal() {
 		return price * quantity;
@@ -93,6 +94,5 @@ public class CartItem implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
 }
