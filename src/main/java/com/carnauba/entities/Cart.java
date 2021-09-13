@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.carnauba.desconto.CalcularDesconto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -66,7 +67,8 @@ public class Cart implements Serializable {
 		
 		return qtds;
 	}
-
+	
+	
 
 	public void setTotal(Double total) {
 		this.total = total;

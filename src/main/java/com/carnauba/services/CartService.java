@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carnauba.desconto.CalcularDesconto;
 import com.carnauba.entities.Cart;
 import com.carnauba.entities.CartItem;
 import com.carnauba.entities.Product;
@@ -35,6 +36,7 @@ public class CartService {
 	}
 	
 	public CartItem inset(CartItem obj,Long id, Integer quantity) {
+		
 		Cart cart = new Cart();//(id, moment);
 		repository.save(cart);
 		Product product = productRepository.getById(id);

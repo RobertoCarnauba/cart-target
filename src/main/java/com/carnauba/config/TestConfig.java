@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.carnauba.desconto.CalcularDesconto;
 import com.carnauba.entities.Cart;
 import com.carnauba.entities.CartItem;
 import com.carnauba.entities.Category;
@@ -79,9 +80,10 @@ public class TestConfig implements CommandLineRunner {
 		CartItem cartItem5 = new CartItem(cart1, product5, 2, product5.getPrice());
 		CartItem cartItem6 = new CartItem(cart1, product7, 10,product7.getPrice());
 		
+
 		cartItemRepository.saveAll(Arrays.asList(cartItem1, cartItem2, cartItem3, cartItem4,cartItem5, cartItem6));
 		
-
+		
 		
 	}
 	
