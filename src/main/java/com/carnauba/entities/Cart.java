@@ -1,7 +1,6 @@
 package com.carnauba.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,12 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import com.carnauba.desconto.CalcularDesconto;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Cart implements Serializable {
@@ -23,18 +17,15 @@ public class Cart implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
-	private Instant moment;
 
 	@OneToMany(mappedBy = "id.cart")
 	private Set<CartItem> itens = new HashSet<>();
-	
+
 	private Double total;
 
-	public Cart(Long id, Instant moment) {
+	public Cart(Long id) {
 		super();
 		this.id = id;
-		this.moment = moment;
 	}
 
 	public Cart() {
@@ -50,41 +41,29 @@ public class Cart implements Serializable {
 		this.id = id;
 	}
 
-	public Instant getMoment() {
-		return moment;
-	}
-
-	public void setMoment(Instant moment) {
-		this.moment = moment;
-	}
-
-
 	public Integer getQtd() {
 		Integer qtds = 0;
-		for(CartItem x : itens) {
+		for (CartItem x : itens) {
 			qtds += x.getQuantity();
 		}
-		
+
 		return qtds;
 	}
-	
-	
 
 	public void setTotal(Double total) {
 		this.total = total;
 	}
 
-	
-	public Set<CartItem> getItems(){
+	public Set<CartItem> getItems() {
 		return itens;
 	}
-	
+
 	public Double getTotal() {
 		double sum = 0.0;
-		for(CartItem x : itens) {
+		for (CartItem x : itens) {
 			sum += x.getSubTotal();
 		}
-		
+
 		return sum;
 	}
 
@@ -115,13 +94,8 @@ public class Cart implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", moment=" + moment  +  ", total=" + total
-				+  "]";
+		return "Cart [id=" + id + ", total=" + total + "]";
 	}
-
-	
-
-	
 
 	// Calcular desconto
 	// Valor com desconto
